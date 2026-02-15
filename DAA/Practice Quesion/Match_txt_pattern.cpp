@@ -69,6 +69,7 @@ int main()
         {
 
             cout<<i<<" Match found in the pattern";
+
             fg=1;
             break;
         }

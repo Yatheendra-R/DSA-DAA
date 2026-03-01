@@ -1,89 +1,63 @@
 #include <bits/stdc++.h>
 using namespace std;
-class backtrack
+
+string s1, s2;
+vector<vector<int>> dp;
+set<string> allLCS;   // to avoid duplicates
+
+void backtrack(int i, int j, string current)
 {
-    public:
-        vector<string> arr1;
-        int backtrack(int i, int j , int p, int d)
-        {
-            if(i==0||j==0)
-            {
-                return p;
-            }
+    if (i == 0 || j == 0)
+    {
+        reverse(current.begin(), current.end());
+        allLCS.insert(current);
+        return;
+    }
 
-            if(s1[i-1]==s2[j-1])
-            {
-                if(p==1)
-                backtrack(i-1,j-1,0,1);
-            }
-            else
-            {
-                if(arr[i-1][j]==arr[i][j-1])
-                {
-                    backtrack(i-1,j,1,0);
+=    if (s1[i - 1] == s2[j - 1])
+    {
+        backtrack(i - 1, j - 1, current + s1[i - 1]);
+    }
+    else
+    {
+        if (dp[i - 1][j] == dp[i][j])
+            backtrack(i - 1, j, current);
 
-                }
-                else
-                {
-                    if(arr[i-1][j]>arr[i][j-1])
-                    {
-                        backtrack(i-1,j,0,0);
-
-
-                    }
-                    else
-                    {
-                        backtrack(i,j-1,0,0);
-                    }
-                }
-            }
-        }
-
-};
+        if (dp[i][j - 1] == dp[i][j])
+            backtrack(i, j - 1, current);
+    }
+}
 
 int main()
 {
-    string s1;
-    string s2;
-    cout<<"Enter the First String: ";
-    cin>>s1;
-    cin.ignore();
-    cout<<"Enter the Second String: ";
-    cin>>s2;
-    int length_s1=s1.length()+1;
-    int length_s2=s2.length()+1;
-    int arr[length_s1][length_s2];
-    for(int i=0;i<length_s1;i++)
-    {
-        for(int j=0;j<length_s2;j++)
-        {
-            arr[i][j]=0;
-        }
-    }
+    cout << "Enter First String: ";
+    cin >> s1;
 
-    for(int i=1;i<length_s1;i++)
+    cout << "Enter Second String: ";
+    cin >> s2;
+
+    int n = s1.length();
+    int m = s2.length();
+
+    dp.assign(n + 1, vector<int>(m + 1, 0));
+    for (int i = 1; i <= n; i++)
     {
-        for(int j=1;j<length_s2;j++)
+        for (int j = 1; j <= m; j++)
         {
-            if(s1[i-1]==s2[j-1])
-            {
-                arr[i][j]=arr[i-1][j-1]+1;
-            }
+            if (s1[i - 1] == s2[j - 1])
+                dp[i][j] = dp[i - 1][j - 1] + 1;
             else
-            {
-                arr[i][j]=max(arr[i-1][j],arr[i][j-1]);
-            }
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
         }
-    }
-    for(int i=0;i<length_s1;i++)
-    {
-        for(int j=0;j<length_s2;j++)
-        {
-            cout<<arr[i][j]<<" ";
-        }
-        cout<<endl;
     }
 
-    backtrack(length_s1-1,length_s2-1,0,0)
+    cout << "\nLength of LCS: " << dp[n][m] << endl;
+
+    backtrack(n, m, "");
+
+    cout << "\nAll Possible LCS:\n";
+    for (auto &str : allLCS)
+        cout << str << endl;
+
     return 0;
 }

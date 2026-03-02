@@ -1,5 +1,69 @@
 #include <bits/stdc++.h>
 using namespace std;
+int main()
+{
+
+    int num_obj;
+    cout<<"Enter the number of item: ";
+    cin>>num_obj;
+    int max_wt;
+    cout<<"Max weight Knapsack: ";
+    cin>>max_wt;
+
+
+    vector<tuple<double,int,int>> vec(num_obj);  // r,p,w
+    for(int i=0;i<num_obj;i++)
+    {
+        cout<<"Enter the profit of "<<i+1<<"th item: ";
+        cin>>get<1>(vec[i]);
+
+
+    }
+    for(int i=0;i<num_obj;i++)
+    {
+        cout<<"Enter the weight of "<<i+1<<"th item: ";
+        cin>>get<2>(vec[i]);
+
+        get<0>(vec[i])=((double)get<1>(vec[i])/get<2>(vec[i]));
+
+
+    }
+    sort(vec.begin(),vec.end(),greater<>());
+    /*for(auto [r,p,w] : vec)
+    {
+        cout<<"Ratio: "<<r
+        <<" Profit: "<<p
+        <<" Weight: "<<w<<endl;
+    }*/
+
+    int curr_wt=0;
+    int i=0;
+    double max_p=0.0;
+    while(curr_wt<max_wt && i<num_obj)
+    {
+        curr_wt+=get<2>(vec[i]);
+        if(curr_wt>max_wt)
+        {
+            curr_wt-=get<2>(vec[i]);
+
+            max_p+=get<0>(vec[i])*(max_wt-curr_wt);
+            curr_wt=max_wt;
+
+        }
+        else
+        {
+            max_p+=get<1>(vec[i]);
+
+
+        }
+        i++;
+    }
+    cout<<"Max profit: "<<fixed<<setprecision(2)<<max_p;
+
+    return 0;
+}
+/*#include <bits/stdc++.h>
+using namespace std;
 struct pw
 {
     int p;
@@ -52,8 +116,8 @@ class knapsack
 
 
 
-            }
-            sort(pwvec.begin(),pwvec.end(),greater<tuple<int,int,int>>());
+            }*/
+            //sort(pwvec.begin(),pwvec.end(),greater<tuple<int,int,int>>());
             /*
             sort(pwvec.begin(), pwvec.end(), [](int a, int b) {
                 return a > b;
@@ -64,7 +128,7 @@ class knapsack
             reverse(pwvec.begin(), pwvec.end());
             */
 
-            sort(pwarr,pwarr+n,cmp);
+            //sort(pwarr,pwarr+n,cmp);
             //disp
             /*
 
@@ -75,8 +139,8 @@ class knapsack
                 cout<<pwarr[i].r<<" "<<pwarr[i].p<<" "<<pwarr[i].w<<" "<<endl;
             }*/
 
-        }
-        void solve()
+        //}
+        /*void solve()
         {
             int i=0;
             double max_p=0.0;
@@ -103,8 +167,8 @@ class knapsack
 
 
 
-};
-int main()
+};*/
+/*int main()
 {
     int n;
     cout<<"Enter the number of item: ";
@@ -114,4 +178,5 @@ int main()
     KS.solve();
     return 0;
 }
+*/
 

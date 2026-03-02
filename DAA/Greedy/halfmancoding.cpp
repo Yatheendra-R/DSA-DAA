@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 struct Node {
     char ch;
     int freq;
@@ -12,13 +11,11 @@ struct Node {
         left = right = nullptr;
     }
 };
-
 struct cmp {
     bool operator()(Node* a, Node* b){
         return a->freq > b->freq;
     }
 };
-
 void printCodes(Node* root, string s){
     if (!root) return;
 
@@ -29,33 +26,30 @@ void printCodes(Node* root, string s){
     printCodes(root->left, s + "0");
     printCodes(root->right, s + "1");
 }
-
 int main() {
     string sen;
     getline(cin, sen);
-
     unordered_map<char,int> freq;
     for (char c : sen) freq[c]++;
-
     priority_queue<Node*, vector<Node*>, cmp> pq;
-
     for (auto [c,f] : freq) {
         pq.push(new Node(c,f));
     }
-
     while (pq.size() > 1) {
         Node* l = pq.top(); pq.pop();
         Node* r = pq.top(); pq.pop();
-
         Node* p = new Node('$', l->freq + r->freq);
         p->left = l;
         p->right = r;
-
         pq.push(p);
     }
-
     printCodes(pq.top(), "");
 }
+
+
+
+
+
     /*
     #include <bits/stdc++.h>
     using namespace std;

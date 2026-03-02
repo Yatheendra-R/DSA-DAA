@@ -12,18 +12,54 @@ int main()
     vector<int> wt(number_itm);
     vector<int> p(number_itm);
 
+    vector<pair<int,int>> wt_p(number_itm);  // pre-sized
+
+    int pr, WT;
+
     for(int i=0;i<number_itm;i++)
     {
-        cout<<"Enter the weight for item: "<<i+1<<" : ";
-        cin>>wt[i];
+        cout<<"Enter the profit for item "<<i+1<<" : ";
+        cin>>pr;
 
+        wt_p[i].second = pr;
     }
+
+    for(int i=0;i<number_itm;i++)
+    {
+        cout<<"Enter the weight for item "<<i+1<<" : ";
+        cin>>WT;
+
+        wt_p[i].first = WT;
+    }
+
+    /*int pr;
+    int WT;
+    vector<pair<int,int>> wt_p;  //w,p
+
     for(int i=0;i<number_itm;i++)
     {
         cout<<"Enter the profit for item: "<<i+1<<" : ";
-        cin>>p[i];
+        cin>>pr;
+        wt_p.push_back({0,pr});
 
     }
+    for(int i=0;i<number_itm;i++)
+    {
+        cout<<"Enter the weight for item: "<<i+1<<" : ";
+        cin>>WT;
+        pr=wt_p.at(i).second;
+        wt_p.at(i)={WT,pr};
+
+    }*/
+
+    sort(wt_p.begin(),wt_p.end());
+    for(int i=0;i<number_itm;i++)
+    {
+        wt[i]=wt_p.at(i).first;
+        p[i]=wt_p.at(i).second;
+    }
+
+
 
     vector<vector<int>> dp(number_itm+1,vector<int>(max_w+1,0));
 

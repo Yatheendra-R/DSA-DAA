@@ -1,83 +1,4 @@
 /*#include <bits/stdc++.h>
-
-using namespace std;
-int css(int arr[],int l,int h)
-{
-    int m=l+(h-l)/2;
-    int mid_lm = arr[m];
-
-    int sum = arr[m];
-    int i = m - 1;
-    while(i>=0)
-    {
-        sum+=arr[i];
-        if(sum>=mid_lm)
-        {
-            mid_lm=sum;
-        }
-        else
-        {
-            break;
-        }
-        i--;
-    }
-    int mid_rm = arr[m + 1];
-    sum = arr[m + 1];
-    i = m + 2;
-
-    while(i<=h)
-    {
-        sum+=arr[i];
-        if(sum>=mid_rm)
-        {
-            mid_rm=sum;
-        }
-        else
-        {
-            break;
-        }
-        i++;
-    }
-    return mid_lm+mid_rm;
-}
-int find_max(int arr[],int l,int h)
-{
-    int m=l+(h-l)/2;
-    if (l > h)
-    {
-        return INT_MIN;
-    }
-    if(l==h)
-    {
-        return arr[l];
-    }
-    int lm=find_max(arr,l,m);
-    int rm=find_max(arr,m+1,h);
-    int cm=css(arr,l,h);
-
-    return max({lm, rm, cm});
-
-}
-int main()
-{
-    int n;
-    cout<<"Enter the size of the array: ";
-    cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++)
-    {
-        cout<<"Enter the number: ";
-        cin>>arr[i];
-    }
-
-
-    int max_sum=find_max(arr,0,n-1);
-    cout<<endl<<max_sum;
-    return 0;
-}
-*/
-
-#include <bits/stdc++.h>
 using namespace std;
 int css(vector <int> &arr,int start ,int mid, int last)
 {
@@ -117,7 +38,6 @@ int max_sum(vector <int> &arr,int start , int last)
     int cs=css(arr,start,mid,last);
     return max({ls,rs,cs});
 }
-using namespace std;
 int main()
 
 {
@@ -133,5 +53,68 @@ int main()
     int ans=max_sum(arr,0,num-1);
     cout<<ans;
 
+    return 0;
+}
+
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+int cross(vector<int>arr,int s,int m,int e)
+{
+    int m_suml=INT_MIN;
+    int m_sumr=INT_MIN;
+    int sum=0;
+    for(int i=m;i>=s;i--)
+    {
+        sum+=arr[i];
+        if(m_suml<sum)
+        {
+            m_suml=sum;
+
+        }
+    }
+    sum=0;
+    for(int i=m+1;i<=e;i++)
+    {
+        sum+=arr[i];
+        if(m_sumr<sum)
+        {
+            m_sumr=sum;
+
+        }
+
+    }
+    return m_suml+m_sumr;
+
+}
+
+int div(vector<int> arr,int s,int e)
+{
+    if(s==e)
+    {
+        return arr[s];
+    }
+    int m=s+((e-s)/2);
+    int lm=div(arr,s,m);
+    int rm=div(arr,m+1,e);
+    int cm=cross(arr,s,m,e);
+    return max({lm,rm,cm});
+}
+int main()
+{
+    int n;
+    cout<<"Enter the number of element in the vector ";
+    cin>>n;
+    vector<int> arr(n,0);
+    cout<<"Enter the number: ";
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr.at(i);
+
+    }
+
+    int max_sum=div(arr,0,n-1);
+    cout<<"Max sum: "<<max_sum;
     return 0;
 }

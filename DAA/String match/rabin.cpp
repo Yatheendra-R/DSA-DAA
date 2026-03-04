@@ -1,69 +1,3 @@
-/*#include <bits/stdc++.h>
-using namespace std;
-int main()
-{
-
-    string t;
-    string p;
-    cout<<"Enter the Text: ";
-    cin>>t;
-    cin.ignore();
-    cout<<"Enter the pattern: ";
-    cin>>p;
-    int l_t=t.size();
-    int l_p=p.size();
-    unordered_set<char> char_t;
-    unordered_set<char> char_p;
-    for(auto each_char:t)
-    {
-        char_t.insert(each_char);
-    }
-    for(auto each_char:p)
-    {
-        char_p.insert(each_char);
-    }
-
-    unordered_map<char,int> code;
-    int d=1;
-    for(auto each_char:char_t)
-    {
-        code[each_char]=d;
-        d++;
-    }
-
-    for(auto pr:code)
-    {
-        cout<<pr.first<<" : "<<pr.second<<endl;
-    }
-
-    vector<int> text_code(l_t,0);
-    vector<int> p_code(l_p,0);
-
-    for(int i=0;i<l_t;i++)
-    {
-        text_code[i]=code[t.at(i)];
-    }
-
-    for(int i=0;i<l_p;i++)
-    {
-        p_code[i]=code[p.at(i)];
-    }
-
-    for(auto t_val:text_code)
-    {
-        cout<<t_val<<" ";
-    }
-    cout<<endl;
-    for(auto p_val:p_code)
-    {
-        cout<<p_val<<" ";
-
-    }
-    cout<<endl;
-
-    return 0;
-}*/
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -129,4 +63,3 @@ int main()
 
     return 0;
 }
-

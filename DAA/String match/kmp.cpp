@@ -72,3 +72,78 @@ int main()
 
     return 0;
 }
+/*#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string t;
+    string p;
+    int m;
+    int n;
+    cout<<"Enter the Text: ";
+    cin>>t;
+    cout<<"Enter the Pattern: ";
+    cin>>p;
+
+    m=t.length();
+    n=p.length();
+
+
+
+    vector<int> lcs(n,0);
+
+    int i=1;
+    int j=0;
+    while(i<n)
+    {
+        if(p[i]==p[j])
+        {
+            j++;
+            lcs[i]=j;
+            i++;
+        }
+        else
+        {
+            if(j==0)
+            {
+                lcs[i]=j;
+                i++;
+            }
+            else
+            {
+                j=lcs[j-1];
+            }
+        }
+    }
+
+    i=0;
+    j=0;
+    while(i<m)
+    {
+        if(t[i]==p[j])
+        {
+            i++;
+            j++;
+        }
+        if(j==n)
+        {
+            cout<<i-j<<endl;
+            j=lcs[j-1];
+        }
+        else if(i<m&&t[i]!=p[j])
+        {
+            if(j==0)
+            {
+                i++;
+            }
+            if(j!=0)
+            {
+                j=lcs[j-1];
+            }
+        }
+    }
+
+
+    return 0;
+
+}*/

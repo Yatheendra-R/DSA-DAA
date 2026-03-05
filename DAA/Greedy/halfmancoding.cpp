@@ -1,5 +1,87 @@
 #include <bits/stdc++.h>
 using namespace std;
+struct node
+{
+    int frq;
+    char c;
+    node *right,*left;
+    node(char c,int frq)
+    {
+        this->c=c;
+        this->frq=frq;
+        right=left=nullptr;
+
+    }
+
+
+};
+
+struct cmp
+{
+    bool operator()(node *a,node *b)
+    {
+        return a->frq>b->frq;
+    }
+
+};
+void printcode(struct node *n,string s)
+{
+    if(!n)
+    {
+       return;
+    }
+    if(!n->left&&!n->right)
+    {
+        if(s == "") s = "0";
+
+        cout<<n->c<<" : "<<s<<endl;
+        return ;
+    }
+    printcode(n->left,s+"0");
+    printcode(n->right,s+"1");
+
+
+
+
+}
+int main()
+{
+    string str;
+    cout<<"Enter the word: ";
+    cin>>str;
+
+    unordered_map<char,int> frq_cnt;
+    for(char c1:str)
+    {
+        frq_cnt[c1]++;
+    }
+
+
+    priority_queue<node*,vector<node*>,cmp> pq;
+
+    for(auto[c1,f]:frq_cnt)
+    {
+        pq.push(new node(c1,f));
+    }
+
+    while(pq.size()>1)
+    {
+        struct node* l=pq.top();
+        pq.pop();
+        struct node* r=pq.top();
+        pq.pop();
+        struct node *pp=new node('$',l->frq+r->frq);
+        pp->left=l;
+        pp->right=r;
+        pq.push(pp);
+
+    }
+    printcode(pq.top(),"");
+
+
+}
+/*#include <bits/stdc++.h>
+using namespace std;
 struct Node {
     char ch;
     int freq;
@@ -45,150 +127,4 @@ int main() {
     }
     printCodes(pq.top(), "");
 }
-
-
-
-
-
-    /*
-    #include <bits/stdc++.h>
-    using namespace std;
-
-    struct Node {
-        char ch;
-        int freq;
-        Node *left;
-        Node *right;
-    };
-
-    struct cmp {
-        bool operator()(Node* a, Node* b) {
-            return a->freq > b->freq;   // min-heap
-        }
-    };
-
-    void printCodes(Node* root, string s) {
-        if (!root) return;
-
-        if (!root->left && !root->right) {
-            cout << root->ch << " : " << s << endl;
-        }
-
-        printCodes(root->left, s + "0");
-        printCodes(root->right, s + "1");
-    }
-
-    int main() {
-        string sen;
-        getline(cin, sen);
-
-        unordered_map<char,int> freq;
-        for (char c : sen)
-            freq[c]++;
-
-        priority_queue<Node*, vector<Node*>, cmp> pq;
-
-        // create leaf nodes
-        for (auto [c,f] : freq) {
-            Node* node = new Node;
-            node->ch = c;
-            node->freq = f;
-            node->left = nullptr;
-            node->right = nullptr;
-
-            pq.push(node);
-        }
-
-        // build Huffman tree
-        while (pq.size() > 1) {
-            Node* l = pq.top(); pq.pop();
-            Node* r = pq.top(); pq.pop();
-
-            Node* p = new Node;
-            p->ch = '$';                     // dummy character
-            p->freq = l->freq + r->freq;     // sum of children
-            p->left = l;
-            p->right = r;
-
-            pq.push(p);
-        }
-
-        // generate codes
-        printCodes(pq.top(), "");
-    }
-
-    */
-    /*using namespace std;
-    int main()
-
-    {
-
-        string sen;
-        cout<<"Enter the sentance: ";
-        cin>>sen;
-
-        unordered_map<char,int> frq;
-        for(auto c:sen )
-        {
-            frq[c]++;
-        }
-
-        priority_queue<pair<int,string>,vector<pair<int,string>>,greater<pair<int,string>>> pq;
-
-        for(auto[k,v]:frq)
-        {
-            string s_="";
-            s_+=k;
-
-            pq.push({v,s_});
-        }
-
-        unordered_map<char,string> code;
-        while(pq.size()>1)
-        {
-            auto[sum,str]=pq.top();
-            cout<<sum<<" "<<str<<endl;
-            for(auto each_C:str)
-            {
-                code[each_C]="1"+code[each_C];
-
-
-            }
-            pq.pop();
-            auto[sum_,str_]=pq.top();
-            cout<<sum_<<" "<<str_<<endl;
-
-            for(auto each_cc:str_)
-            {
-                code[each_cc]="0"+code[each_cc];
-
-            }
-            pq.pop();
-            pq.push({sum+sum_,str+str_});
-            cout<<endl<<"--------------------------"<<endl;
-            for(auto[k,v]:code)
-            {
-                cout<<k<<" : "<<v<<endl;
-            }
-
-            cout<<endl<<"--------------------------"<<endl;
-
-
-
-        }
-
-
-        cout<<endl<<endl;
-        cout<<"Final answer: "<<endl;
-        for(auto[k,v]:code)
-        {
-            cout<<k<<" : "<<v<<endl;
-        }
-
-
-
-
-
-        return 0;
-    }
-    */
+*/

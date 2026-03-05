@@ -5,7 +5,7 @@ Hi, I'm Yatheendra R.
 
 This repository contains my practice implementations of Data Structures and Algorithms (DSA) and Design and Analysis of Algorithms (DAA).
 
-The purpose of this repository is to strengthen my problem-solving skills, improve algorithmic thinking, and build strong fundamentals in C and C++.
+The purpose of this repository is to strengthen my problem-solving skills, improve algorithmic thinking, and build strong fundamentals in C++.
 
 ---
 

@@ -124,7 +124,7 @@ int main(){
     cout << endl;
 
     cout << "Sorting descending...\n";
-    sort(roll.begin(), roll.end(), greater<int>());
+    sort(roll.begin(), roll.end(), greater<int>()); // type is not compulsory
     for(auto r : roll){
         cout << r << " ";
     }

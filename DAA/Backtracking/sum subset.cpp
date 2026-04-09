@@ -97,6 +97,7 @@ int main()
 | Vector<int> backtracking             | O(n * 2^n)      | Best       |
 
 */
+
 #include <bits/stdc++.h>
 using namespace std;
 

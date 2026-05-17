@@ -222,4 +222,54 @@ int main()
     return 0;
 }
 */
+/*
+          A
+        A B A
+      A B C B A
+    A B C D C B A
+  A B C D E D C B A
+int main()
+{
+    int r;
+    cout<<"Enter the number of lines(rows): ";
+    cin>>r;
+    int c=2*r+1;
 
+    for(int i=0;i<r;i++)
+    {
+        char a='A';
+        a--;
+        for(int j=0;j<c;j++)
+        {
+            if(j<=(c/2))
+            {
+                if(i+j>=c/2)
+                {
+                    a++;
+                   cout<<a<<" ";
+                }
+                else
+                {
+                    cout<<"  ";
+                }
+            }
+            else
+            {
+                if((j-i)<=c/2)
+                {
+                    a--;
+                    cout<<a<<" ";
+                }
+                else
+                {
+                    cout<<"  ";
+                }
+
+            }
+        }
+        cout<<endl;
+    }
+
+    return 0;
+}
+*/

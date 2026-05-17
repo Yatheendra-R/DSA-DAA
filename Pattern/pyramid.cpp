@@ -187,4 +187,39 @@ int main(){
     return 0;
 }
 */
+/*
+*
+**
+***
+****
+*****
+****
+***
+**
+*
+int main()
+{
+    int n;
+    cout<<"Enter the number max star in a the pattern line: ";
+    cin>>n;
+    int i=1;
+    while(i<=n)
+    {
+        string s=string(i,'*');
+        cout<<s<<endl;
+        i++;
+
+
+    }
+    i=n-1;
+    while(i>0)
+    {
+        string s=string(i,'*');
+        cout<<s<<endl;
+        i--;
+
+    }
+    return 0;
+}
+*/
 

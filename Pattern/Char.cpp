@@ -111,9 +111,30 @@ int main()
 }
 */
 
-
+/*
+E
+D E
+C D E
+B C D E
+A B C D E
 
 int main()
 {
+    int n;
+    cout<<"Enter the number of lines: ";
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        char s='A'+n-1-i;
+        for(int j=0;i>=j;j++)
+        {
+            cout<<s<<" ";
+            s++;
+        }
+        cout<<endl;
+    }
     return 0;
 }
+*/
+
+

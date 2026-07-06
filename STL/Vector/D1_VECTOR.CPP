@@ -12,6 +12,7 @@ int main(){
     }
     cout<<endl;
     /*//Empty
+    
     for(auto m:mark){
         cout<<m<<" ";
     }*/
@@ -20,7 +21,7 @@ int main(){
     for(int i=0;i<l;i++){
         getline(cin, name[i]);
         //cin>>mark[i]; error bcs size of mark is not predefined so we can not use at or []
-        //cin>>mark.push_back(); //Because push_back() is not a variable — it’s a function.
+        //cin>>mark.push_back(); //Because push_back() is not a variable ï¿½ itï¿½s a function.
         int dummy_mark;
 
         cin>>dummy_mark;

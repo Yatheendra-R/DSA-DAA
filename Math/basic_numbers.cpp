@@ -162,6 +162,9 @@ int main()
     //Niven number/Harshad
     //an integer that is completely divisible by the sum of its own digits.
     //18 is a Niven number because the sum of its digits is 1+8=9, 18 div 9=2(completely divisible)
+
+
+
     //Neon Number
     //duck number
     //strong number
@@ -182,6 +185,7 @@ int main()
     //Chinese remainder
     //Miller Rabin
     //Number theoretic transform
+    //Euclidean
 
 
 

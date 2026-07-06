@@ -6,7 +6,7 @@ using namespace std;
 
 int main(){
     int r = 3, c = 2;
-    //vector<vector<int>> mat2(r, vector<int>(c, 0));  // 0 is default value filled
+    //vector<vector<int>> mat2(r, vector<int>(c,    g++ -std=c++17 "E:\MY DSA_DAA\D1_VECTOR.CPP" -o "E:\MY DSA_DAA\D1_VECTOR.exe"; & "E:\MY DSA_DAA\D1_VECTOR.exe"0));  // 0 is default value filled
     vector<vector<int>> mat2;
 
     vector<vector<int>> mat1; //no predefined row and column size

@@ -22,7 +22,7 @@ int main()
         {
             swap(arr[i],arr[j]);
             i++;
-            j=i+1;
+            j++;
         }
         else if(arr[i]==0 && arr[j]==0)
         {
@@ -33,7 +33,7 @@ int main()
         else
         {
             i++;
-            j=i+1;
+            j++;
         }
 
 
